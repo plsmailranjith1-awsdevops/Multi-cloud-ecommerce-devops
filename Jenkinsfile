@@ -15,5 +15,12 @@ pipeline {
                 sh 'docker build -t ecommers-app:1.0 .'
             }
         }
+
+        stage('Docker Run') {
+            steps {
+                sh 'docker rm -f ecommerce-app || true'
+                sh 'docker run -d --name ecommerce-app -p 5000:5000 ecommers-app:1.0'
+            }
+        }
     }
 }
